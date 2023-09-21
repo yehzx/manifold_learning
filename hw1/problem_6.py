@@ -43,7 +43,7 @@ class KdTree():
     def search(self, target, within):
         points_within_range = []
 
-        def traverse(current_node):
+        def search_tree(current_node):
             node_list = []
             while current_node is not None:
                 node_list.append(current_node)
@@ -74,11 +74,11 @@ class KdTree():
                     back_node.coordinates[back_node.axis]
                 if abs(distance_to_hyperplane) < within:
                     if distance_to_hyperplane <= 0:
-                        find_points_within_range(traverse(back_node.right))
+                        find_points_within_range(search_tree(back_node.right))
                     else:
-                        find_points_within_range(traverse(back_node.left))
+                        find_points_within_range(search_tree(back_node.left))
 
-        find_points_within_range(traverse(self.root))
+        find_points_within_range(search_tree(self.root))
 
         return points_within_range
 
