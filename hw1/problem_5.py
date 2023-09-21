@@ -71,7 +71,7 @@ def initialize_nodes(n):
 def next_step(k, n, node_collection: NodeCollection):
     nodes_to_connect = sample_k_nodes_from_n(k, n, node_collection)
     parent_node = connect_nodes(nodes_to_connect)
-    # One way to see if the graph is fully connected or not
+    # If parent_node.n_children == (n - 1), it means that only one component left.
     return False if parent_node.n_children == (n - 1) else True
 
 
